@@ -1,30 +1,34 @@
 <?php
 
+
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
      *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+      * @return void
+      */
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function dashboard()
     {
-        return view('home');
+        $user = Auth::user();
+        // dump($user->toArray());
+        // dump(Auth::check());
+        return view('admin.dashboard');
     }
 }
